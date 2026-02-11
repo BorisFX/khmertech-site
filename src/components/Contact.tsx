@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Mail, MessageCircle, Send } from 'lucide-react';
+import { useI18n } from '../i18n/context';
 
 const Contact = () => {
+  const { t } = useI18n();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,16 +25,22 @@ const Contact = () => {
     });
   };
 
+  const channelIcons: Record<string, typeof Mail> = {
+    email: Mail,
+    telegram: MessageCircle,
+    wechat: MessageCircle,
+  };
+
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Ready to Take Your Business Online?
+              {t.contact.title}
             </h2>
             <p className="text-lg text-secondary">
-              Let's have a chat about your project. The first consultation is always free.
+              {t.contact.subtitle}
             </p>
           </div>
 
@@ -41,7 +49,7 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-primary mb-2">
-                    Your Name *
+                    {t.contact.form.name}
                   </label>
                   <input
                     type="text"
@@ -51,13 +59,13 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all"
-                    placeholder="John Doe"
+                    placeholder={t.contact.form.namePlaceholder}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-primary mb-2">
-                    Email Address *
+                    {t.contact.form.email}
                   </label>
                   <input
                     type="email"
@@ -67,13 +75,13 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all"
-                    placeholder="john@business.com"
+                    placeholder={t.contact.form.emailPlaceholder}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="business" className="block text-sm font-medium text-primary mb-2">
-                    Your Business Name
+                    {t.contact.form.business}
                   </label>
                   <input
                     type="text"
@@ -82,13 +90,13 @@ const Contact = () => {
                     value={formData.business}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all"
-                    placeholder="ABC Company Ltd."
+                    placeholder={t.contact.form.businessPlaceholder}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-primary mb-2">
-                    Message *
+                    {t.contact.form.message}
                   </label>
                   <textarea
                     id="message"
@@ -98,7 +106,7 @@ const Contact = () => {
                     required
                     rows={5}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all resize-none"
-                    placeholder="Tell me about your project..."
+                    placeholder={t.contact.form.messagePlaceholder}
                   />
                 </div>
 
@@ -106,7 +114,7 @@ const Contact = () => {
                   type="submit"
                   className="w-full bg-accent text-white px-6 py-4 rounded-lg hover:bg-amber-500 transition-all font-semibold flex items-center justify-center group"
                 >
-                  Send Message
+                  {t.contact.form.submit}
                   <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </form>
@@ -115,60 +123,49 @@ const Contact = () => {
             <div className="space-y-8">
               <div>
                 <h3 className="text-xl font-semibold text-primary mb-4">
-                  Direct Contact
+                  {t.contact.directContact}
                 </h3>
                 <div className="space-y-4">
-                  <a
-                    href="mailto:contact@khmertech.dev"
-                    className="flex items-center text-secondary hover:text-accent transition-colors group"
-                  >
-                    <Mail className="w-5 h-5 mr-3 text-accent" />
-                    <span>contact@khmertech.dev</span>
-                  </a>
-                  <a
-                    href="https://t.me/khmertechdev"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-secondary hover:text-accent transition-colors group"
-                  >
-                    <MessageCircle className="w-5 h-5 mr-3 text-accent" />
-                    <span>@khmertechdev</span>
-                  </a>
+                  {t.contact.channels.map((ch, i) => {
+                    const Icon = channelIcons[ch.type] || Mail;
+                    return (
+                      <a
+                        key={i}
+                        href={ch.href}
+                        target={ch.href.startsWith('http') ? '_blank' : undefined}
+                        rel={ch.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        className="flex items-center text-secondary hover:text-accent transition-colors group"
+                      >
+                        <Icon className="w-5 h-5 mr-3 text-accent" />
+                        <span>{ch.label}</span>
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
 
               <div>
                 <h3 className="text-xl font-semibold text-primary mb-4">
-                  Office Location
+                  {t.contact.office.title}
                 </h3>
                 <p className="text-secondary">
-                  Based in Phnom Penh, Cambodia<br />
-                  Available for meetings throughout the city<br />
-                  Remote collaboration worldwide
+                  {t.contact.office.lines.map((line, i) => (
+                    <span key={i}>{line}{i < t.contact.office.lines.length - 1 && <br />}</span>
+                  ))}
                 </p>
               </div>
 
               <div className="bg-bg-light p-6 rounded-lg">
                 <h3 className="text-lg font-semibold text-primary mb-3">
-                  What Happens Next?
+                  {t.contact.nextSteps.title}
                 </h3>
                 <ol className="space-y-2 text-secondary">
-                  <li className="flex">
-                    <span className="text-accent font-semibold mr-2">1.</span>
-                    I'll respond within 24 hours
-                  </li>
-                  <li className="flex">
-                    <span className="text-accent font-semibold mr-2">2.</span>
-                    We'll schedule a free consultation
-                  </li>
-                  <li className="flex">
-                    <span className="text-accent font-semibold mr-2">3.</span>
-                    You'll receive a detailed proposal
-                  </li>
-                  <li className="flex">
-                    <span className="text-accent font-semibold mr-2">4.</span>
-                    We start building your success
-                  </li>
+                  {t.contact.nextSteps.steps.map((step, i) => (
+                    <li key={i} className="flex">
+                      <span className="text-accent font-semibold mr-2">{i + 1}.</span>
+                      {step}
+                    </li>
+                  ))}
                 </ol>
               </div>
             </div>

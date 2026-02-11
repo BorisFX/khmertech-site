@@ -1,6 +1,9 @@
 import { ArrowRight } from 'lucide-react';
+import { useI18n } from '../i18n/context';
 
 const Hero = () => {
+  const { t } = useI18n();
+
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -36,32 +39,26 @@ const Hero = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center py-20">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-fade-in-up">
-            Secure Websites & Payment Solutions for Cambodian Businesses
+            {t.hero.title}
           </h1>
           <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed animate-fade-in-up animation-delay-200">
-            From simple online presence to custom FinTech integration, I help you get paid online, reliably and securely.
+            {t.hero.subtitle}
           </p>
           <button
             onClick={() => scrollToSection('contact')}
             className="bg-accent text-white text-lg px-8 py-4 rounded-lg hover:bg-amber-500 transition-all transform hover:scale-105 font-semibold inline-flex items-center group animate-fade-in-up animation-delay-400 shadow-xl hover:shadow-2xl"
           >
-            Schedule a Free Consultation
+            {t.hero.cta}
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
           </button>
 
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="animate-fade-in-up animation-delay-600">
-              <div className="text-3xl font-bold text-accent mb-2 animate-pulse">9+</div>
-              <div className="text-white/80">Years Experience</div>
-            </div>
-            <div className="animate-fade-in-up animation-delay-700">
-              <div className="text-3xl font-bold text-accent mb-2 animate-pulse animation-delay-200">100%</div>
-              <div className="text-white/80">Security Focus</div>
-            </div>
-            <div className="animate-fade-in-up animation-delay-800">
-              <div className="text-3xl font-bold text-accent mb-2 animate-pulse animation-delay-400">24/7</div>
-              <div className="text-white/80">Support Available</div>
-            </div>
+            {t.hero.stats.map((stat, i) => (
+              <div key={i} className={`animate-fade-in-up animation-delay-${600 + i * 100}`}>
+                <div className="text-3xl font-bold text-accent mb-2 animate-pulse">{stat.value}</div>
+                <div className="text-white/80">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

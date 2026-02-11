@@ -1,41 +1,23 @@
 import { ExternalLink } from 'lucide-react';
+import { useI18n } from '../i18n/context';
 
 const Portfolio = () => {
-  const projects = [
-    {
-      title: 'Booking & Payment System for Boutique Hotel',
-      description: 'Developed a comprehensive booking platform with integrated payment processing for a luxury boutique hotel in Siem Reap. Increased online bookings by 150% within 3 months.',
-      technologies: ['WordPress', 'ABA Pay API', 'Custom PHP', 'MySQL'],
-      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop',
-    },
-    {
-      title: 'Multi-vendor E-commerce Platform',
-      description: 'Built a scalable marketplace connecting local artisans with international customers, featuring secure payment processing and inventory management.',
-      technologies: ['React', '.NET Core', 'Wing API', 'PostgreSQL'],
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
-    },
-    {
-      title: 'Restaurant Chain POS Integration',
-      description: 'Integrated modern POS system with online ordering platform for a popular restaurant chain, enabling seamless order management across 5 locations.',
-      technologies: ['Node.js', 'Pi Pay API', 'MongoDB', 'Vue.js'],
-      image: 'https://images.unsplash.com/photo-1556742393-d75f468bfcb0?w=600&h=400&fit=crop',
-    },
-  ];
+  const { t } = useI18n();
 
   return (
     <section id="portfolio" className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-            Featured Projects
+            {t.portfolio.title}
           </h2>
           <p className="text-lg text-secondary max-w-2xl mx-auto">
-            Recent success stories from Cambodian businesses
+            {t.portfolio.subtitle}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {t.portfolio.projects.map((project, index) => (
             <div
               key={index}
               className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300"
@@ -75,7 +57,7 @@ const Portfolio = () => {
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             className="inline-flex items-center text-accent hover:text-amber-500 font-semibold transition-colors group"
           >
-            Discuss Your Project
+            {t.portfolio.cta}
             <ExternalLink className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
