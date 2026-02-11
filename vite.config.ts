@@ -11,11 +11,16 @@ export default defineConfig({
   plugins: [
     react(),
     {
-      name: 'copy-index-to-404',
+      name: 'copy-spa-routes',
       closeBundle() {
         const dist = path.resolve(__dirname, 'dist')
-        if (fs.existsSync(path.join(dist, 'index.html'))) {
-          fs.copyFileSync(path.join(dist, 'index.html'), path.join(dist, '404.html'))
+        const index = path.join(dist, 'index.html')
+        if (fs.existsSync(index)) {
+          // 404 fallback for GitHub Pages
+          fs.copyFileSync(index, path.join(dist, '404.html'))
+          // Physical /zh/ route for Chinese version
+          fs.mkdirSync(path.join(dist, 'zh'), { recursive: true })
+          fs.copyFileSync(index, path.join(dist, 'zh', 'index.html'))
         }
       }
     }
