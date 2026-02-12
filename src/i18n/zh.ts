@@ -130,10 +130,10 @@ const zh: Translations = {
     ],
     cta: '开始合作',
     skills: [
-      { name: '.NET', label: '核心平台' },
-      { name: 'React', label: '前端开发' },
-      { name: '支付API', label: 'ABA/Wing/KHQR' },
-      { name: 'AI', label: '智能对账' },
+      { name: '9+', label: '年金融科技经验' },
+      { name: '50+', label: '已交付项目' },
+      { name: '5', label: '支付渠道对接' },
+      { name: '99.9%', label: '系统可用率' },
     ],
   },
   contact: {

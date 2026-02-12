@@ -130,10 +130,10 @@ const en: Translations = {
     ],
     cta: "Let's Work Together",
     skills: [
-      { name: '.NET / C#', label: 'Core Platform' },
-      { name: 'React', label: 'Frontend' },
-      { name: 'Blockchain', label: 'Smart Contracts' },
-      { name: 'Payment APIs', label: 'ABA / Wing / KHQR' },
+      { name: '9+', label: 'Years in FinTech' },
+      { name: '50+', label: 'Projects Delivered' },
+      { name: '5', label: 'Payment Providers' },
+      { name: '99.9%', label: 'System Uptime' },
     ],
   },
   contact: {
