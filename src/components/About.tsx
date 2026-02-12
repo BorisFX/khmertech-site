@@ -7,8 +7,7 @@ const About = () => {
     <section id="about" className="py-20 bg-bg-light">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1">
+          <div className="max-w-2xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
                 {t.about.title}
               </h2>
@@ -25,17 +24,6 @@ const About = () => {
                   {t.about.cta}
                 </button>
               </div>
-            </div>
-            <div className="order-1 md:order-2">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-2xl transform rotate-6"></div>
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop"
-                  alt="Professional headshot"
-                  className="relative rounded-2xl shadow-xl w-full"
-                />
-              </div>
-            </div>
           </div>
 
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
