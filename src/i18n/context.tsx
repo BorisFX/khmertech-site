@@ -53,6 +53,13 @@ export const I18nProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     document.documentElement.lang = lang;
+    if (lang === 'zh') {
+      document.title = '柬埔寨支付集成与AI解决方案 | khmertech.dev';
+      document.querySelector('meta[name="description"]')?.setAttribute('content', '柬埔寨支付集成（ABA、Wing、KHQR、微信支付）与AI解决方案，为中资企业提供一站式金融科技服务。');
+    } else {
+      document.title = 'khmertech.dev | Payment Integration & AI Solutions in Cambodia';
+      document.querySelector('meta[name="description"]')?.setAttribute('content', 'Payment integration (ABA, Wing, KHQR, WeChat Pay) and AI solutions for businesses in Cambodia.');
+    }
   }, [lang]);
 
   return (

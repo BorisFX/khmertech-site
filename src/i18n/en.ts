@@ -153,6 +153,7 @@ const en: Translations = {
     directContact: 'Direct Contact',
     channels: [
       { type: 'email', label: 'contact@khmertech.dev', href: 'mailto:contact@khmertech.dev' },
+      { type: 'phone', label: '+855 93 625 776', href: 'tel:+85593625776' },
       { type: 'telegram', label: '@khmertechdev', href: 'https://t.me/khmertechdev' },
     ],
     office: {

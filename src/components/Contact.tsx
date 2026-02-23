@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, MessageCircle, Send } from 'lucide-react';
+import { Mail, MessageCircle, Phone, Send } from 'lucide-react';
 import { useI18n } from '../i18n/context';
 
 const Contact = () => {
@@ -27,6 +27,7 @@ const Contact = () => {
 
   const channelIcons: Record<string, typeof Mail> = {
     email: Mail,
+    phone: Phone,
     telegram: MessageCircle,
     wechat: MessageCircle,
   };
